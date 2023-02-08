@@ -2,7 +2,6 @@
 using EmployeePayrollUsingThread;
 using System.Collections.Generic;
 using System;
-using EmployeePayrollServiceSQL;
 
 namespace EmployeePayrollTest
 {
@@ -29,6 +28,12 @@ namespace EmployeePayrollTest
             employeePayrollOperations.addEmployeeToPayroll(employeeDetails);
             DateTime stopDateTime = DateTime.Now;
             Console.WriteLine("Duration without thread: " + (stopDateTime - startDateTime));
+
+            DateTime startDateTimeThread = DateTime.Now;
+            employeePayrollOperations.addEmployeeToPayrollWithThread(employeeDetails);
+            DateTime stopDateTimeThread = DateTime.Now;
+            Console.WriteLine("Duration with Thread: " + (stopDateTimeThread - startDateTimeThread));
+
 
         }
     }
