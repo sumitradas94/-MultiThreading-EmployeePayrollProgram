@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 
-namespace EmployeePayrollServiceSQL
+namespace EmployeePayrollUsingThread
 {
     public class EmployeePayrollOperations
     {
@@ -22,6 +21,21 @@ namespace EmployeePayrollServiceSQL
             });
 
             Console.WriteLine(this.employeePayrollDetailList.ToString());
+        }
+
+        public void addEmployeeToPayrollWithThread(List<EmployeeDetails> employeePayrollDataList)
+        {
+            employeePayrollDataList.ForEach(employeeData =>
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Employee being added: " + employeeData.EmployeeName);
+                    this.addEmployeePayroll(employeeData);
+                    Console.WriteLine("Employee Added: " + employeeData.EmployeeName);
+                });
+                thread.Start();
+            });
+            Console.WriteLine(this.employeePayrollDetailList.Count);
         }
 
         public void addEmployeePayroll(EmployeeDetails emp)
