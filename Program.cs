@@ -1,4 +1,8 @@
-﻿namespace EmployeePayrollServiceSQL
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace EmployeePayrollUsingThread
 {
     public class Program
     {
@@ -11,6 +15,12 @@
             employeePayrollOperations.addEmployeeToPayroll(employeeDetails);
             DateTime stopDateTime = DateTime.Now;
             Console.WriteLine("Duration without thread: " + (stopDateTime - startDateTime));
+
+            DateTime startDateTimeThread = DateTime.Now;
+            employeePayrollOperations.addEmployeeToPayrollWithThread(employeeDetails);
+            DateTime stopDateTimeThread = DateTime.Now;
+            Console.WriteLine("Duration with Thread: " + (stopDateTimeThread - startDateTimeThread));
+
 
         }
     }
